@@ -11,35 +11,30 @@ import Applications from "./pages/dashboard/Applications";
 import Internships from "./pages/dashboard/Internships";
 import StaffManagement from "./pages/dashboard/StaffManagement";
 import NotFound from "./pages/NotFound";
-import { useCustomCursor } from "./hooks/use-custom-cursor";
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  useCustomCursor();
-  
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<DashboardLayout />}>
-              <Route index element={<Overview />} />
-              <Route path="dynamic-data" element={<DynamicData />} />
-              <Route path="applications" element={<Applications />} />
-              <Route path="internships" element={<Internships />} />
-              <Route path="staff" element={<StaffManagement />} />
-            </Route>
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<Overview />} />
+            <Route path="dynamic-data" element={<DynamicData />} />
+            <Route path="applications" element={<Applications />} />
+            <Route path="internships" element={<Internships />} />
+            <Route path="staff" element={<StaffManagement />} />
+          </Route>
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
